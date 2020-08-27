@@ -1,0 +1,23 @@
+<div class="main">
+  <ion-header [translucent]="true">
+    <ion-toolbar class="fouk">
+      <ion-title>
+        SFM GROUP
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-item>
+    <ion-label position="stacked">Username</ion-label>
+    <ion-input [(ngModel)]="username"> </ion-input>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label position="stacked">Password</ion-label>
+    <ion-input [(ngModel)]="pass" type="password"></ion-input>
+  </ion-item>
+
+  <ion-button size="medium" color="primary" (click)="buttonClick()">Log in</ion-button>
+</div>

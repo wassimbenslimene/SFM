@@ -1,0 +1,283 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      vision globale
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item >
+      <ion-label>Environnement</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 >
+        <ion-card >
+          <ion-card-content>
+            temperature {{ temperature ? temperature : '-' }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+        <ion-col col-6 >
+          <ion-card>
+            <ion-card-content>
+              porte
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-5 >
+        <ion-card>
+          <ion-card-content>
+            fumé    {{ dat ? dat : '-' }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+  <ion-list>
+    <ion-item >
+      <ion-label>mesure AC</ion-label>
+    </ion-item>
+  </ion-list>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          R
+        </ion-col>
+        <ion-col>
+          S
+        </ion-col>
+        <ion-col>
+          T
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          Tension(U)
+        </ion-col>
+        <ion-col>
+          {{ ACV1 ? ACV1 : '-' }}
+        </ion-col>
+        <ion-col>
+          {{ ACV2 ? ACV2 : '-' }}
+        </ion-col>
+        <ion-col>
+          {{ ACV3 ? ACV3 : '-' }}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          Courant(I)
+        </ion-col>
+        <ion-col>
+          {{ ACI1 ? ACI1 : '-' }}
+        </ion-col>
+        <ion-col>
+          {{ ACI2 ? ACI2 : '-' }}
+        </ion-col>
+        <ion-col>
+          {{ ACI3 ? ACI3 : '-' }}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          Puissance (P)
+        </ion-col>
+        <ion-col>
+          {{ ACP1 ? ACP1 : '-' }}
+        </ion-col>
+        <ion-col>
+          {{ ACP2 ? ACP2 : '-' }}
+        </ion-col>
+        <ion-col>
+          {{ ACP3 ? ACP3 : '-' }}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          Energie(E)
+        </ion-col>
+        <ion-col>
+          {{ ACE1 ? ACE1 : '-' }}
+        </ion-col>
+        <ion-col>
+          {{ ACE2 ? ACE2 : '-' }}
+        </ion-col>
+        <ion-col>
+          {{ ACE3 ? ACE3 : '-' }}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-align-self-start">
+          Fréquence(F)
+        </ion-col>
+        <ion-col class="ion-align-self-center">
+          {{ ACF1 ? ACF1 : '-' }}
+        </ion-col>
+        <ion-col class="ion-align-self-end">
+          {{ ACF2 ? ACF2 : '-' }}
+        </ion-col>
+        <ion-col>
+          {{ ACF3 ? ACF3 : '-' }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-align-self-start">
+          Cout(FCFA)
+        </ion-col>
+        <ion-col class="ion-align-self-center">
+          {{ ACE1*cout ? ACE1*cout : '-' }}
+        </ion-col>
+        <ion-col class="ion-align-self-end">
+          {{ ACE2*cout ? ACE2*cout : '-' }}
+        </ion-col>
+        <ion-col>
+          {{ ACE3*cout ? ACE3*cout : '-' }}
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  <ion-list>
+    <ion-item >
+      <ion-label>mesure DC</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        Redresseur
+      </ion-col>
+      <ion-col>
+        BTS
+      </ion-col>
+      <ion-col>
+        Batterie
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        Tension(U)
+      </ion-col>
+      <ion-col>
+        {{ BTSV ? BTSV : '-' }}
+      </ion-col>
+      <ion-col>
+        {{ BTSV ? BTSV : '-' }}
+      </ion-col>
+      <ion-col>
+        {{ BATV ? BATV : '-' }}
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        Courant(I)
+      </ion-col>
+      <ion-col>
+        {{ BTSI ? BTSI: '-' }}
+      </ion-col>
+      <ion-col>
+        {{ BTSI? BTSI: '-' }}
+      </ion-col>
+      <ion-col>
+        {{ BATI ? BATI : '-' }}
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        Puissance (P)
+      </ion-col>
+      <ion-col>
+        {{ BTSP ? BTSP : '-' }}
+      </ion-col>
+      <ion-col>
+        {{ BTSP ? BTSP : '-' }}
+      </ion-col>
+      <ion-col>
+        {{ BATP ? BATP : '-' }}
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        Energie(E)
+      </ion-col>
+      <ion-col>
+        -
+      </ion-col>
+      <ion-col>
+          -
+      </ion-col>
+      <ion-col>
+        {{ BATE ? BATE : '-' }}
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+  <ion-list>
+    <ion-item >
+      <ion-label>Contact de defaut</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 >
+        <ion-card>
+          <ion-card-content>
+            Etat de secteur Baie1
+            <ion-icon name="power" [color]="etat_de_secteur? 'success' : 'danger'"></ion-icon>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 >
+        <ion-card>
+          <ion-card-content>
+            Alarme electrogène
+            <ion-icon name="power" [color]="alarme_electrogene? 'success' : 'danger'"></ion-icon>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 >
+        <ion-card>
+          <ion-card-content>
+            Etat secteur AC general
+            <ion-icon name="power" [color]="AC_general? 'success' : 'danger'"></ion-icon>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 >
+        <ion-card>
+          <ion-card-content>
+            Etat secteur baie2
+            <ion-icon name="power" [color]="BAIE2? 'success' : 'danger'"></ion-icon>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+
+</ion-content>
