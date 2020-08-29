@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {ToastController} from '@ionic/angular';
 @Component({
   selector: 'app-stats',
   templateUrl: './stats.page.html',
@@ -8,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class StatsPage implements OnInit {
   error: string;
   dat: string;
+  cnt2 = 0;
   temperature:string;
     ACV1:string;
     ACV2:string;
@@ -33,16 +35,32 @@ export class StatsPage implements OnInit {
     BATP:string;
     BATE:string;
 
+    timeAC:string;
+    timeDC:string;
+    timeenv:string;
+
     etat_de_secteur:string;
     alarme_electrogene:string;
     AC_general:string;
     BAIE2:string;
     cout:string;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public toastController: ToastController ) {this.setIntrvl(); }
+  setInterval = setInterval;
+    async presentToast(st: string) {
+        const toast = await this.toastController.create({
+            message: st,
+            duration: 2000
+        });
+        toast.present();
+    }
+  setIntrvl(){
+      setInterval(() => this.ionicview(), 10000);
+
+  }
   getRemotedata(){
     return this.http.get('http://192.168.90.182/app_dev.php/api/mesures/list/10/4');
   }
-  ionViewDidEnter() {
+  ionicview() {
     this.getRemotedata().subscribe(
         data => {
           // Set the data to display in the template
@@ -52,6 +70,9 @@ export class StatsPage implements OnInit {
               {this.dat=data['site']['boxes']['0']['devices'][i]['mesures']['0']['valeur1']}
               if (data['site']['boxes']['0']['devices'][i]['id']=='312')
               {this.temperature=data['site']['boxes']['0']['devices'][i]['mesures']['0']['valeur1']}
+
+              if (data['site']['boxes']['0']['devices'][i]['id']=='312')
+              {this.timeenv=data['site']['boxes']['0']['devices'][i]['lastConnexion']['date']}
 
               if (data['site']['boxes']['0']['devices'][i]['id']=='336')
               {this.ACV1=data['site']['boxes']['0']['devices'][i]['mesures']['0']['valeur1']}
@@ -118,10 +139,10 @@ export class StatsPage implements OnInit {
               {this.BATI=data['site']['boxes']['0']['devices'][i]['mesures']['0']['valeur1']}
 
               if (data['site']['boxes']['0']['devices'][i]['id']=='315')
-              {this.BATP=data['site']['boxes']['0']['devices'][i]['mesures']['0']['valeur1']}
+              {this.BATP=Math.abs(data['site']['boxes']['0']['devices'][i]['mesures']['0']['valeur1'])}
 
               if (data['site']['boxes']['0']['devices'][i]['id']=='317')
-              {this.BATE=data['site']['boxes']['0']['devices'][i]['mesures']['0']['valeur1']}
+              {this.BATE=Math.abs(data['site']['boxes']['0']['devices'][i]['mesures']['0']['valeur1'])}
               if (data['site']['boxes']['0']['devices'][i]['id']=='310')
               {this.etat_de_secteur=data['site']['boxes']['0']['devices'][i]['mesures']['0']['valeur1']}
 
@@ -133,12 +154,18 @@ export class StatsPage implements OnInit {
 
               if (data['site']['boxes']['0']['devices'][i]['id']=='355')
               {this.BAIE2=data['site']['boxes']['0']['devices'][i]['mesures']['0']['valeur1']}
+
+              if (data['site']['boxes']['0']['devices'][i]['id']=='336')
+              {this.timeAC=data['site']['boxes']['0']['devices'][i]['lastConnexion']['date']}
+              if (data['site']['boxes']['0']['devices'][i]['id']=='301')
+              {this.timeDC=data['site']['boxes']['0']['devices'][i]['lastConnexion']['date']}
                 }
             this.cout=data['site']['coutKwatt'];
             this.cout == JSON.stringify(this.cout);
 
             this.dat == JSON.stringify(this.dat);
             this.temperature == JSON.stringify(this.temperature);
+            this.timeenv == JSON.stringify(this.timeenv);
             this.ACV1 == JSON.stringify(this.ACV1);
             this.ACV2 == JSON.stringify(this.ACV2);
             this.ACV3 == JSON.stringify(this.ACV3);
@@ -167,7 +194,12 @@ export class StatsPage implements OnInit {
             this.alarme_electrogene == JSON.stringify(this.alarme_electrogene);
             this.AC_general == JSON.stringify(this.AC_general);
             this.BAIE2 == JSON.stringify(this.BAIE2);
-            console.log(this.BATI);
+
+            this.timeAC == JSON.stringify(this.timeAC);
+            this.timeDC == JSON.stringify(this.timeDC);
+            console.log("test");
+            this.presentToast("Les valeurs sont actualisées");
+            console.log(this.timeDC);
         },
         err => {
           // Set the error information to display in the template

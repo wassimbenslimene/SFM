@@ -10,7 +10,7 @@
 <ion-content>
   <ion-list>
     <ion-item >
-      <ion-label>Environnement</ion-label>
+      <ion-label>Environnement (Dernière mesure : {{ timeenv ? timeenv : 0 }})</ion-label>
     </ion-item>
   </ion-list>
   <ion-grid>
@@ -18,7 +18,8 @@
       <ion-col col-6 >
         <ion-card >
           <ion-card-content>
-            temperature {{ temperature ? temperature : '-' }}
+            <ion-icon name="thermometer" [color]="'danger'"></ion-icon>
+            Température {{ temperature ? temperature : 0 }}
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -34,7 +35,8 @@
       <ion-col col-5 >
         <ion-card>
           <ion-card-content>
-            fumé    {{ dat ? dat : '-' }}
+            <img style="width:4%" src="assets/icon/images.png"/>
+            fumée    {{ dat ? dat : 0 }}
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -43,7 +45,7 @@
   </ion-grid>
   <ion-list>
     <ion-item >
-      <ion-label>mesure AC</ion-label>
+      <ion-label>Mesure AC (Dernière mesure : {{ timeAC ? timeAC : 0 }})</ion-label>
     </ion-item>
   </ion-list>
 
@@ -51,110 +53,105 @@
       <ion-row>
         <ion-col>
         </ion-col>
-        <ion-col>
+        <ion-col class="bordure">
           R
         </ion-col>
-        <ion-col>
+        <ion-col class="bordure">
           S
         </ion-col>
-        <ion-col>
+        <ion-col class="bordure">
           T
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col>
+        <ion-col class="bordure">
           Tension(U)
         </ion-col>
-        <ion-col>
+        <ion-col class="borduree">
           {{ ACV1 ? ACV1 : '-' }}
         </ion-col>
-        <ion-col>
+        <ion-col class="borduree">
           {{ ACV2 ? ACV2 : '-' }}
         </ion-col>
-        <ion-col>
+        <ion-col class="borduree">
           {{ ACV3 ? ACV3 : '-' }}
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col>
+        <ion-col class="bordure">
           Courant(I)
         </ion-col>
-        <ion-col>
+        <ion-col class="borduree">
           {{ ACI1 ? ACI1 : '-' }}
         </ion-col>
-        <ion-col>
+        <ion-col class="borduree">
           {{ ACI2 ? ACI2 : '-' }}
         </ion-col>
-        <ion-col>
+        <ion-col class="borduree">
           {{ ACI3 ? ACI3 : '-' }}
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col>
+        <ion-col class="bordure">
           Puissance (P)
         </ion-col>
-        <ion-col>
+        <ion-col class="borduree">
           {{ ACP1 ? ACP1 : '-' }}
         </ion-col>
-        <ion-col>
+        <ion-col class="borduree">
           {{ ACP2 ? ACP2 : '-' }}
         </ion-col>
-        <ion-col>
+        <ion-col class="borduree">
           {{ ACP3 ? ACP3 : '-' }}
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col>
+        <ion-col class="bordure">
           Energie(E)
         </ion-col>
-        <ion-col>
+        <ion-col class="borduree">
           {{ ACE1 ? ACE1 : '-' }}
         </ion-col>
-        <ion-col>
+        <ion-col class="borduree">
           {{ ACE2 ? ACE2 : '-' }}
         </ion-col>
-        <ion-col>
+        <ion-col class="borduree">
           {{ ACE3 ? ACE3 : '-' }}
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col class="ion-align-self-start">
+        <ion-col class="bordure">
           Fréquence(F)
         </ion-col>
-        <ion-col class="ion-align-self-center">
+        <ion-col class="borduree">
           {{ ACF1 ? ACF1 : '-' }}
         </ion-col>
-        <ion-col class="ion-align-self-end">
+        <ion-col class="borduree">
           {{ ACF2 ? ACF2 : '-' }}
         </ion-col>
-        <ion-col>
+        <ion-col class="borduree">
           {{ ACF3 ? ACF3 : '-' }}
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col class="ion-align-self-start">
+        <ion-col class="bordure">
           Cout(FCFA)
         </ion-col>
-        <ion-col class="ion-align-self-center">
-          {{ ACE1*cout ? ACE1*cout : '-' }}
+        <ion-col class="borduree">
+          {{ ACE1*cout ? (ACE1+ACE2+ACE3)*cout : '-' }}
         </ion-col>
-        <ion-col class="ion-align-self-end">
-          {{ ACE2*cout ? ACE2*cout : '-' }}
-        </ion-col>
-        <ion-col>
-          {{ ACE3*cout ? ACE3*cout : '-' }}
-        </ion-col>
+
       </ion-row>
 
     </ion-grid>
   <ion-list>
     <ion-item >
-      <ion-label>mesure DC</ion-label>
+      <ion-label>Mesure DC(Dernière mesure : {{ timeDC ? timeDC : 0 }})</ion-label>
     </ion-item>
   </ion-list>
 
@@ -162,73 +159,73 @@
     <ion-row>
       <ion-col>
       </ion-col>
-      <ion-col>
+      <ion-col class="bordure">
         Redresseur
       </ion-col>
-      <ion-col>
+      <ion-col class="bordure">
         BTS
       </ion-col>
-      <ion-col>
+      <ion-col class="bordure">
         Batterie
-      </ion-col>
+      </ion-col >
     </ion-row>
 
     <ion-row>
-      <ion-col>
+      <ion-col class="bordure">
         Tension(U)
       </ion-col>
-      <ion-col>
+      <ion-col class="borduree">
         {{ BTSV ? BTSV : '-' }}
       </ion-col>
-      <ion-col>
+      <ion-col class="borduree">
         {{ BTSV ? BTSV : '-' }}
       </ion-col>
-      <ion-col>
+      <ion-col class="borduree">
         {{ BATV ? BATV : '-' }}
       </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col>
+      <ion-col class="bordure">
         Courant(I)
       </ion-col>
-      <ion-col>
+      <ion-col class="borduree">
         {{ BTSI ? BTSI: '-' }}
       </ion-col>
-      <ion-col>
+      <ion-col class="borduree">
         {{ BTSI? BTSI: '-' }}
       </ion-col>
-      <ion-col>
-        {{ BATI ? BATI : '-' }}
+      <ion-col class="borduree">
+        {{ BATI ? BATI : 0 }}
       </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col>
+      <ion-col class="bordure">
         Puissance (P)
       </ion-col>
-      <ion-col>
+      <ion-col class="borduree">
         {{ BTSP ? BTSP : '-' }}
       </ion-col>
-      <ion-col>
+      <ion-col class="borduree">
         {{ BTSP ? BTSP : '-' }}
       </ion-col>
-      <ion-col>
+      <ion-col class="borduree">
         {{ BATP ? BATP : '-' }}
       </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col>
+      <ion-col class="bordure">
         Energie(E)
       </ion-col>
-      <ion-col>
+      <ion-col class="borduree">
         -
       </ion-col>
-      <ion-col>
+      <ion-col class="borduree">
           -
       </ion-col>
-      <ion-col>
+      <ion-col class="borduree">
         {{ BATE ? BATE : '-' }}
       </ion-col>
     </ion-row>

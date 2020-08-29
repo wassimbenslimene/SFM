@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import {ToastController} from '@ionic/angular';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -12,13 +14,21 @@ export class LoginPage {
   data: Observable<any>;
   public username: string;
   public pass: string;
-  constructor(public http: HttpClient , private router: Router) {}
+  constructor(public http: HttpClient , private router: Router, public toastController: ToastController) {}
   navigatetohome() {
     this.router.navigate(['home']);
   }
 
   async delay(ms: number) {
     await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
+  }
+
+  async presentToast(st: string) {
+    const toast = await this.toastController.create({
+      message: st,
+      duration: 2000
+    });
+    toast.present();
   }
 
     buttonClick()
@@ -29,19 +39,21 @@ export class LoginPage {
     postdata.append('password',this.pass);
     this.data = this.http.post<any>(url,postdata);
     this.data.subscribe(data => {
-      console.log(data['message']);
-    });
-    this.delay(7000);
-    if (this.data['message']=='Authentification effectuée avec succès')
-    {
-      alert(this.data['message']);
-      this.navigatetohome();
-    }
-    else
-    {
+      console.log(data['message']);},
+      (err) => {
+        // this.loading = false;
+        console.log(err);
+        this.presentToast("Authentification échouée !");
 
-      alert("Authentification échouée");
-      console.log(this.data['message']);
-    }
+      },
+          () => {
+            // this.loading = false;
+            // this.toaster.lunchSuccessToast("you are welcome","Access");
+            this.presentToast("Bienvenue !");
+            //alert("Welcome !");
+            this.navigatetohome();
+
+    });
+
   }
 }
